@@ -1,0 +1,5 @@
+pluginTag: '&8[&bPTGUI&8]'
+messages:
+  playerOffline: '&4Oyuncu Bulunamadı!'
+  teleportToSelf: '&cKendine Işınlanamazsın!'
+  teleported: '&b%player% &aadlı oyuncuya ışınlandın!'

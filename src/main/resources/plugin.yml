@@ -1,0 +1,11 @@
+name: PlayerTeleportGUI
+version: '${version}'
+main: com.github.sokakmelodileri.playerteleportgui.PlayerTeleportGUI
+api-version: '1.20'
+commands:
+  ptg:
+    description: "SimpleParkour komutu"
+    aliases: [ playerteleport, ptggg ]
+    permission: ptg.usage
+    permission-message: "§cBu komutu kullanmak için yetkiniz yok!"
+
