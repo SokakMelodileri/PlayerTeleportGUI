@@ -5,10 +5,12 @@ import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class Listener implements org.bukkit.event.Listener {
     PlayerTeleportGUI pl;
+    Command cmd;
     Listener (PlayerTeleportGUI plugin){
         this.pl = plugin;
     }
@@ -24,7 +26,7 @@ public class Listener implements org.bukkit.event.Listener {
             HumanEntity clicker = event.getWhoClicked();
 
             if(clickedItem == null) return;
-            if(slotIndex > 26) return;
+            if(slotIndex > 54) return;
 
             if(clickedItem.getType().equals(Material.PLAYER_HEAD)){
                 if(clickType.equals(ClickType.LEFT)){
@@ -38,6 +40,25 @@ public class Listener implements org.bukkit.event.Listener {
                     }
                     event.getWhoClicked().teleport(event.getWhoClicked().getServer().getPlayer(clickedItem.getItemMeta().getDisplayName()));
                     event.getWhoClicked().sendMessage(pl.tag + pl.getConfig().getString("messages.teleported").replace("%player%", clickedItem.getItemMeta().getDisplayName()).replace("&", "§"));
+                }
+            }
+            if(clickedItem.getType() == Material.ARROW && clickedItem.getItemMeta().getDisplayName().equalsIgnoreCase("§aSonraki Sayfa")){
+                if(clickType.equals(ClickType.LEFT)){
+                    Inventory gui2 = CreatePage.createNextPage();
+                    clicker.openInventory(gui2);
+                }
+            }
+
+            if(clickedItem.getType() == Material.ARROW && clickedItem.getItemMeta().getDisplayName().equalsIgnoreCase("§aÖnceki Sayfa")){
+                if(clickType.equals(ClickType.LEFT)){
+                    Inventory gui = CreatePage.createFirstPage();
+                    clicker.openInventory(gui);
+                }
+            }
+
+            if(clickedItem.getType() == Material.BARRIER && clickedItem.getItemMeta().getDisplayName().equalsIgnoreCase("§cKapat")){
+                if(clickType.equals(ClickType.LEFT)){
+                    clicker.closeInventory();
                 }
             }
         }
